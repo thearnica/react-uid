@@ -16,6 +16,8 @@ Generate UID for an item, Renderless UID containers, SSR-friendly UID generation
 
 - `UID` - renderless container for generation Ids
 ```js
+ import {UID} from 'react-uid';
+
  <UID>
      {id => (
        <Fragment>
@@ -23,11 +25,23 @@ Generate UID for an item, Renderless UID containers, SSR-friendly UID generation
          <label htmlFor={id} />
        </Fragment> 
      )}
- </UID> 
+ </UID>
+
+ // you can apply some "naming conventions" to the keys
+  <UID name={ id => `unique-${id}` }>
+      {id => (
+        <Fragment>
+          <input id={id} />
+          <label htmlFor={id} />
+        </Fragment>
+      )}
+  </UID>
 ```
 
 - `UIDReset` && `SmartUID` - SSR friendly UID. Could maintain consistency across renders.
 ```js
+ import {UIDReset, SmartUID} from 'react-uid';
+
  <UIDReset>
      <SmartUID>
          {id => (
