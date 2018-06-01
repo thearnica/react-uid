@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UID test UID 1`] = `
+<div>
+  <span>
+    0
+  </span>
+  <span>
+    1
+  </span>
+</div>
+`;
+
+exports[`UID test UID 2`] = `
+<div>
+  <span>
+    key-2
+  </span>
+</div>
+`;
+
+exports[`UID test UID 3`] = `
+Array [
+  <span>
+    0
+  </span>,
+  <span>
+    1
+  </span>,
+  <span>
+    3
+  </span>,
+]
+`;
+
+exports[`UID test UID 4`] = `
+Array [
+  <span>
+    0
+  </span>,
+  <span>
+    0
+  </span>,
+  <span>
+    4
+  </span>,
+]
+`;
