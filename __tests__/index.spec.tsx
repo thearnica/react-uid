@@ -31,13 +31,15 @@ describe('uid', () => {
 
 describe('UID', () => {
   it('test UID', () => {
+    const a = {};
+    const b = {};
     const testRenderer = TestRenderer.create(
       <div>
         <UID>
           {id => <span>{id}</span>}
         </UID>
         <UID>
-          {id => <span>{id}</span>}
+          {(id,uid) => <span>{id} {uid(a)}</span>}
         </UID>
       </div>
     );
@@ -48,7 +50,7 @@ describe('UID', () => {
           {id => <span>{id}</span>}
         </UID>
         <UID>
-          {id => <span>{id}</span>}
+          {(id,uid) => <span>{id} {uid(a)}</span>}
         </UID>
       </div>
     );
@@ -60,6 +62,9 @@ describe('UID', () => {
         <UID name={id => `key-${id}`}>
           {id => <span>{id}</span>}
         </UID>
+        <UID name={id => `key-${id}`}>
+          {(id,uid) => <span>{id} {uid(b)}</span>}
+        </UID>
       </div>
     );
 
@@ -67,13 +72,15 @@ describe('UID', () => {
   })
 
   it('test UID', () => {
+    const a = {};
+    const b = {};
     const testRenderer1 = TestRenderer.create(
       <UIDReset>
         <SmartUID>
           {id => <span>{id}</span>}
         </SmartUID>
         <SmartUID>
-          {id => <span>{id}</span>}
+          {(id,uid) => <span>{id} {uid(a)}</span>}
         </SmartUID>
         <UID>
           {id => <span>{id}</span>}
@@ -88,7 +95,7 @@ describe('UID', () => {
         </SmartUID>
         <UIDReset>
           <SmartUID>
-            {id => <span>{id}</span>}
+            {(id,uid) => <span>{id} {uid(b)}</span>}
           </SmartUID>
         </UIDReset>
         <UID>
