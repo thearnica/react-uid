@@ -1,7 +1,7 @@
 export const generateUID = () => {
   let counter = 1;
 
-  const map = new Map<any, number>();
+  const map = new WeakMap<any, number>();
 
   const uid = (item: any): string => {
     if (
