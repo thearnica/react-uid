@@ -11,9 +11,13 @@ describe('uid', () => {
     expect(uid(a)).toEqual('uid1');
     expect(uid(b)).toEqual('uid2');
     expect(uid(a)).toEqual('uid1');
+    expect(uid(a, 42)).toEqual('uid1');
 
-    expect(uid("test")).toEqual("not-uidtest");
-    expect(uid(42)).toEqual("not-uid42");
+    expect(uid("test")).toEqual("not-unique-test");
+    expect(uid(42)).toEqual("not-unique-42");
+
+    expect(uid(42, 1)).toEqual("by-index-1");
+    expect(uid(42, 2)).toEqual("by-index-2");
   });
 
   it('generate', () => {
@@ -39,7 +43,7 @@ describe('UID', () => {
           {id => <span>{id}</span>}
         </UID>
         <UID>
-          {(id,uid) => <span>{id} {uid(a)}</span>}
+          {(id, uid) => <span>{id} {uid(a)}</span>}
         </UID>
       </div>
     );
@@ -50,7 +54,7 @@ describe('UID', () => {
           {id => <span>{id}</span>}
         </UID>
         <UID>
-          {(id,uid) => <span>{id} {uid(a)}</span>}
+          {(id, uid) => <span>{id} {uid(a)}</span>}
         </UID>
       </div>
     );
@@ -63,7 +67,7 @@ describe('UID', () => {
           {id => <span>{id}</span>}
         </UID>
         <UID name={id => `key-${id}`}>
-          {(id,uid) => <span>{id} {uid(b)}</span>}
+          {(id, uid) => <span>{id} {uid(b)}</span>}
         </UID>
       </div>
     );
@@ -80,7 +84,7 @@ describe('UID', () => {
           {id => <span>{id}</span>}
         </SmartUID>
         <SmartUID>
-          {(id,uid) => <span>{id} {uid(a)}</span>}
+          {(id, uid) => <span>{id} {uid(a)}</span>}
         </SmartUID>
         <UID>
           {id => <span>{id}</span>}
@@ -95,7 +99,7 @@ describe('UID', () => {
         </SmartUID>
         <UIDReset>
           <SmartUID>
-            {(id,uid) => <span>{id} {uid(b)}</span>}
+            {(id, uid) => <span>{id} {uid(b)}</span>}
           </SmartUID>
         </UIDReset>
         <UID>
