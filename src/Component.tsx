@@ -14,9 +14,9 @@ export interface UIDProps {
   name?: (n: string|number) => string,
   idSource?: {
     value: number,
-    uid: (item: any) => string,
+    uid: (item: any, index?: number) => string,
   },
-  children: (id: string, uid: (item: any) => string) => React.ReactNode
+  children: (id: string, uid: (item: any, index?: number) => string) => React.ReactNode
 }
 
 const getId = (source: typeof counter) => source.value++;

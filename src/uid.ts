@@ -3,16 +3,16 @@ export const generateUID = () => {
 
   const map = new WeakMap<any, number>();
 
-  const uid = (item: any): string => {
+  const uid = (item: any, index?: number): string => {
     if (
       typeof item === 'number' ||
       typeof item === 'string'
     ) {
-      return 'not-uid' + String(item);
+      return index ? `by-index-${index}` : `not-unique-${item}`;
     }
 
     if (!map.has(item)) {
-      map.set(item, counter++)
+      map.set(item, counter++);
       return uid(item)
     }
     return 'uid' + map.get(item);

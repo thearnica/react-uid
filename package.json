@@ -22,11 +22,14 @@
     "format": "ts-react-toolbox format",
     "analyze": "ts-react-toolbox analyze"
   },
-  "repository": "",
-  "bugs": {
-    "url": "https://github.com/theArnica/react-uid/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thearnica/react-uid.git"
   },
-  "homepage": "https://github.com/theArnica/react-uid#readme",
+  "bugs": {
+    "url": "https://github.com/thearnica/react-uid/issues"
+  },
+  "homepage": "https://github.com/thearnica/react-uid#readme",
   "author": "Marina Korzunova (thearnica@gmail.com)",
   "license": "MIT",
   "devDependencies": {

@@ -8,11 +8,22 @@ UID
 Generate UID for an item, Renderless UID containers, SSR-friendly UID generation
 
 ## API
-- `uid` - generates UID for an object(function and so on). Quite usable for React `key` property.
+- `uid(item, [index])` - generates UID for an object(function and so on). Quite usable for React `key` property.
+`item` should be an object, but could be anything. In case it is not an "object", and might have non-unique value - you have to specify second argument - `index`
 ```js
  import {uid} from 'react-uid';
  
+ // objects
+ const data = [{a:1}, {b:2}];
  data.map( item => <li key={uid(item)}>{item}</li>)
+ 
+ // unique strings
+ const data = ["a", "b"];
+ data.map( item => <li key={uid(item)}>{item}</li>)
+ 
+ // strings
+ const data = ["a", "a"];
+  data.map( (item, index) => <li key={uid(item, index)}>{item}</li>)
 ``` 
 
 - `UID` - renderless container for generation Ids
@@ -38,12 +49,19 @@ Generate UID for an item, Renderless UID containers, SSR-friendly UID generation
       )}
   </UID>
   
-  // UID also provide `uid` as a second agrument
+  // UID also provide `uid` as a second argument
   <UID>
        {(id,uid) => (
          data.map( item => <li key={uid(item)}>{item}</li>) 
        )}
-   </UID>
+  </UID>
+  
+  // in the case `item` is not an object, but number or string - provide and index
+  <UID>
+       {(id,uid) => (
+         data.map( (item, index) => <li key={uid(item, index)}>{item}</li>) 
+       )}
+  </UID>
 ```
 
 - `UIDReset` && `SmartUID` - SSR friendly UID. Could maintain consistency across renders.
