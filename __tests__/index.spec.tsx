@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as TestRenderer from 'react-test-renderer';
-import {uid, UID, UIDReset, generateUID, SmartUID} from "../src";
+import {uid, UID, UIDReset, generateUID, UIDFork, UIDConsumer} from "../src";
 
 
 describe('uid', () => {
@@ -75,17 +75,17 @@ describe('UID', () => {
     expect(testRenderer2.toJSON()).toMatchSnapshot();
   })
 
-  it('test UID', () => {
+  it('test UIDConsumer', () => {
     const a = {};
     const b = {};
     const testRenderer1 = TestRenderer.create(
       <UIDReset>
-        <SmartUID>
+        <UIDConsumer>
           {id => <span>{id}</span>}
-        </SmartUID>
-        <SmartUID>
+        </UIDConsumer>
+        <UIDConsumer>
           {(id, uid) => <span>{id} {uid(a)}</span>}
-        </SmartUID>
+        </UIDConsumer>
         <UID>
           {id => <span>{id}</span>}
         </UID>
@@ -94,13 +94,13 @@ describe('UID', () => {
 
     const testRenderer2 = TestRenderer.create(
       <UIDReset>
-        <SmartUID>
+        <UIDConsumer>
           {id => <span>{id}</span>}
-        </SmartUID>
+        </UIDConsumer>
         <UIDReset>
-          <SmartUID>
+          <UIDConsumer>
             {(id, uid) => <span>{id} {uid(b)}</span>}
-          </SmartUID>
+          </UIDConsumer>
         </UIDReset>
         <UID>
           {id => <span>{id}</span>}
@@ -111,5 +111,104 @@ describe('UID', () => {
 
     expect(testRenderer1.toJSON()).toMatchSnapshot();
     expect(testRenderer2.toJSON()).toMatchSnapshot();
-  })
+  });
+
+  it('test UIDFork', () => {
+    let cc = 0;
+    let rc = 0;
+
+    const d = () => new Promise( resolve => setImmediate(resolve));
+
+    const createDelayed = () => {
+      const counter = cc++;
+      let run = 0;
+      let resolve: any = () => ({});
+      const p = new Promise(r => resolve = r);
+
+      class C extends React.Component<any, any> {
+        state = {
+          unblocked: false
+        }
+
+        componentDidMount() {
+          p.then(() => {
+            run=rc++;
+            this.setState({unblocked: true})
+          })
+        }
+
+        render() {
+          return this.state.unblocked ? this.props.children : null;
+        }
+      }
+
+      return {C, p, resolve};
+    };
+
+    const testRenderer = (C1: any, C2: any) => (
+      TestRenderer.create(
+        <UIDReset>
+          <UIDFork>
+            <C1>
+              <UIDConsumer>
+                {id => <span>{id}</span>}
+              </UIDConsumer>
+              <UIDConsumer>
+                {id => <span>{id}</span>}
+              </UIDConsumer>
+            </C1>
+          </UIDFork>
+          <UIDFork>
+            <C2>
+              <UIDConsumer>
+                {id => <span>{id}</span>}
+              </UIDConsumer>
+              <UIDConsumer>
+                {id => <span>{id}</span>}
+              </UIDConsumer>
+            </C2>
+          </UIDFork>
+          <UIDFork>
+            <C1>
+              <UIDConsumer>
+                {id => <span>{id}</span>}
+              </UIDConsumer>
+            </C1>
+          </UIDFork>
+          <UIDFork>
+            <C2>
+              <UIDConsumer>
+                {id => <span>{id}</span>}
+              </UIDConsumer>
+            </C2>
+          </UIDFork>
+        </UIDReset>
+      )
+    );
+
+    const C11 = createDelayed();
+    const C12 = createDelayed();
+    const C21 = createDelayed();
+    const C22 = createDelayed();
+
+    const r1 = testRenderer(C11.C, C12.C);
+    const r2 = testRenderer(C21.C, C22.C);
+
+    return Promise
+      .resolve()
+      .then(() => C11.resolve())
+      .then(d)
+      .then(() => C12.resolve())
+      .then(d)
+      .then(() => C22.resolve())
+      .then(d)
+      .then(() => C21.resolve())
+      .then(d)
+      .then(() => {
+
+        expect(r1.toJSON()).toEqual(r2.toJSON());
+        expect(r1.toJSON()).toMatchSnapshot();
+        // expect(r2.toJSON()).toMatchSnapshot();
+      });
+  });
 });
