@@ -64,13 +64,20 @@ Generate UID for an item, Renderless UID containers, SSR-friendly UID generation
   </UID>
 ```
 
-- `UIDReset` && `SmartUID` - SSR friendly UID. Could maintain consistency across renders.
-Including "scoped" `uid`, available as a second argument.
+### Server-side friendly UID
+
+- `UIDReset`, `UIDConsumer`, `UIDFork` - SSR friendly UID. Could maintain consistency across renders.
+They are much more complex than `UID`, and provide functionality you might not need.
+
+The key difference - they are not using global "singlentone" to track used IDs, 
+but read it from Context API, thus works without side effects.
+
+Next example will generate the same code, regardless how many time you will render it
 ```js
- import {UIDReset, SmartUID} from 'react-uid';
+ import {UIDReset, UIDConsumer} from 'react-uid';
 
  <UIDReset>
-     <SmartUID>
+     <UIDConsumer>
          {(id,uid) => (
            <Fragment>
              <input id={id} />
@@ -80,6 +87,37 @@ Including "scoped" `uid`, available as a second argument.
          )}
      </SmartUID>
  </UIDReset>
+```
+
+__UID__ is not SSR friendly - use __UIDConsumer__.
+
+### Code splitting
+Codesplitting may affect the order or existence of the components, so alter
+the `componentDidMount` order, and change the generated ID as result.
+
+In case of SPA, this is not something you should be bothered about, but for SSR
+this could be fatal.
+
+Next example  will generate consistent keys regardless of component mount order.
+Each call to `UIDFork` creates a new branch of UIDs untangled from siblings. 
+```js
+import {UIDReset, UIDFork, UIDConsumer} from 'react-uid';
+
+ <UIDReset>
+     <UIDFork>
+      <AsyncLoadedCompoent>
+         <UIDConsumer>
+           { uid => <span>{uid} is unique </span>}
+         </UIDConsumer>
+     </UIDFork>
+     <UIDFork>
+       <AsyncLoadedCompoent>
+          <UIDConsumer>
+            { uid => <span>{uid} is unique </span>}
+          </UIDConsumer>
+      </UIDFork>    
+ </UIDReset>
+```
 ```
 
 # Licence
