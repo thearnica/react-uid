@@ -8,6 +8,8 @@ UID
 
 Generate UID for an item, Renderless UID containers, SSR-friendly UID generation
 
+Example - https://codesandbox.io/s/kkmwr6vv47
+
 ## API
 - `uid(item, [index])` - generates UID for an object(function and so on). Quite usable for React `key` property.
 `item` should be an object, but could be anything. In case it is not an "object", and might have non-unique value - you have to specify second argument - `index`
