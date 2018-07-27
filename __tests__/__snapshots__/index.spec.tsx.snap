@@ -80,3 +80,26 @@ Array [
   </span>,
 ]
 `;
+
+exports[`UID test UIDFork uid 1`] = `
+Array [
+  <span>
+    1-uid1
+  </span>,
+  <span>
+    1-uid2
+  </span>,
+  <span>
+    1-uid1
+  </span>,
+  <span>
+    2-uid1
+  </span>,
+  <span>
+    2-uid2
+  </span>,
+  <span>
+    2-uid1
+  </span>,
+]
+`;
