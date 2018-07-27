@@ -2,7 +2,8 @@ UID
 =======
 [![Build Status](https://travis-ci.org/thearnica/react-uid.svg?branch=master)](https://travis-ci.org/thearnica/react-uid)
 [![coverage-badge](https://img.shields.io/codecov/c/github/thearnica/react-uid.svg?style=flat-square)](https://codecov.io/github/thearnica/react-uid)
-[![NPM version](https://img.shields.io/npm/v/react-uid.svg)](https://www.npmjs.com/package/react-uid) [![Greenkeeper badge](https://badges.greenkeeper.io/thearnica/react-uid.svg)](https://greenkeeper.io/)
+[![NPM version](https://img.shields.io/npm/v/react-uid.svg)](https://www.npmjs.com/package/react-uid)
+[![Greenkeeper badge](https://badges.greenkeeper.io/thearnica/react-uid.svg)](https://greenkeeper.io/)
 
 
 Generate UID for an item, Renderless UID containers, SSR-friendly UID generation
