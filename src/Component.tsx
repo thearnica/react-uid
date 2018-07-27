@@ -32,15 +32,22 @@ export const getPrefix = (source?: IdSourceType) => source ? source.prefix : '';
 export class UID extends React.Component<UIDProps> {
   state = {
     quartz: this.props.idSource || counter,
-    id: getPrefix(this.props.idSource) + getId(this.props.idSource || counter)
+    prefix: getPrefix(this.props.idSource),
+    id: getId(this.props.idSource || counter)
   };
 
-  prefixId = (id: number | string) => String(this.props.name ? this.props.name(id) : id);
+
+  prefixId (id: number | string) {
+    const uid = (this.state.prefix + id);
+    return String(this.props.name ? this.props.name(uid) : uid);
+  }
+
+  uid = (item: any) => this.prefixId(this.state.quartz.uid(item));
 
   render() {
     const {children} = this.props;
-    const {id, quartz} = this.state;
-    return children(this.prefixId(id), (item: any) => this.prefixId(quartz.uid(item)))
+    const {id} = this.state;
+    return children(this.prefixId(id), this.uid)
   }
 }
 

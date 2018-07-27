@@ -113,11 +113,43 @@ describe('UID', () => {
     expect(testRenderer2.toJSON()).toMatchSnapshot();
   });
 
+  it('test UIDFork uid', () => {
+    const a = {};
+    const b = {};
+    const wrapper = TestRenderer.create(
+      <UIDReset>
+        <UIDFork>
+          <UIDConsumer>
+            {(id, uid) => <span>{uid(a)}</span>}
+          </UIDConsumer>
+          <UIDConsumer>
+            {(id, uid) => <span>{uid(b)}</span>}
+          </UIDConsumer>
+          <UIDConsumer>
+            {(id, uid) => <span>{uid(a)}</span>}
+          </UIDConsumer>
+        </UIDFork>
+        <UIDFork>
+          <UIDConsumer>
+            {(id, uid) => <span>{uid(a)}</span>}
+          </UIDConsumer>
+          <UIDConsumer>
+            {(id, uid) => <span>{uid(b)}</span>}
+          </UIDConsumer>
+          <UIDConsumer>
+            {(id, uid) => <span>{uid(a)}</span>}
+          </UIDConsumer>
+        </UIDFork>
+      </UIDReset>
+    );
+    expect(wrapper.toJSON()).toMatchSnapshot();
+  });
+
   it('test UIDFork', () => {
     let cc = 0;
     let rc = 0;
 
-    const d = () => new Promise( resolve => setImmediate(resolve));
+    const d = () => new Promise(resolve => setImmediate(resolve));
 
     const createDelayed = () => {
       const counter = cc++;
@@ -132,7 +164,7 @@ describe('UID', () => {
 
         componentDidMount() {
           p.then(() => {
-            run=rc++;
+            run = rc++;
             this.setState({unblocked: true})
           })
         }
