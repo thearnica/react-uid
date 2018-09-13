@@ -2,8 +2,10 @@
   "name": "react-uid",
   "version": "2.0.1",
   "description": "Render less container for ID generation",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/es5/index.js",
+  "types": "dist/es5/index.d.ts",
+  "jsnext:main": "dist/es2015/index.js",
+  "module": "dist/es2015/index.js",
   "files": [
     "dist"
   ],
@@ -38,13 +40,19 @@
     "flow-bin": "^0.76.0",
     "react-test-renderer": "^16.4.0",
     "size-limit": "^0.18.0",
-    "ts-react-toolbox": "^0.1.10"
+    "ts-react-toolbox": "^0.1.21"
   },
+  "size-limit": [
+    {
+      "path": "dist/es2015/index.js",
+      "limit": "1 KB"
+    }
+  ],
   "engines": {
     "node": ">=8.5.0"
   },
   "peerDependencies": {
     "react": "^16.3.0"
   },
-  "keywords": []
+  "keywords": ["react","uid","counter","context"]
 }
