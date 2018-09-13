@@ -1,6 +1,6 @@
 {
   "name": "react-uid",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Render less container for ID generation",
   "main": "dist/es5/index.js",
   "types": "dist/es5/index.d.ts",
@@ -54,5 +54,10 @@
   "peerDependencies": {
     "react": "^16.3.0"
   },
-  "keywords": ["react","uid","counter","context"]
+  "keywords": [
+    "react",
+    "uid",
+    "counter",
+    "context"
+  ]
 }
