@@ -3168,9 +3168,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-bin@^0.76.0:
-  version "0.76.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.76.0.tgz#eb00036991c3abc106743fcbc7ee321f02aa4faa"
+flow-bin@^0.82.0:
+  version "0.82.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.82.0.tgz#fbec84c0d6cab7877565eca8214d655f3aefb8db"
 
 flow-parser@^0.*:
   version "0.73.0"
