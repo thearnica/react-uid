@@ -39,6 +39,7 @@
     "codecov": "^3.0.2",
     "flow-bin": "^0.76.0",
     "react-test-renderer": "^16.4.0",
+    "size-limit": "^0.19.1",
     "size-limit": "^0.18.0",
     "ts-react-toolbox": "^0.1.21"
   },
