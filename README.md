@@ -6,7 +6,7 @@ UID
 [![Greenkeeper badge](https://badges.greenkeeper.io/thearnica/react-uid.svg)](https://greenkeeper.io/)
 
 
-Generate UID for an item, Renderless UID containers, SSR-friendly UID generation
+Generate UID for an item, Renderless UID containers, SSR-friendly UID generation __in 900 bytes__.
 
 Example - https://codesandbox.io/s/kkmwr6vv47
 
@@ -122,6 +122,9 @@ import {UIDReset, UIDFork, UIDConsumer} from 'react-uid';
  </UIDReset>
 ```
 ```
+
+# Types
+Written in TypeScript
 
 # Licence
  MIT
