@@ -13,11 +13,11 @@ describe('uid', () => {
     expect(uid(a)).toEqual('uid1');
     expect(uid(a, 42)).toEqual('uid1');
 
-    expect(uid("test")).toEqual("not-unique-test");
-    expect(uid(42)).toEqual("not-unique-42");
+    expect(uid("test")).toEqual("val-test");
+    expect(uid(42)).toEqual("val-42");
 
-    expect(uid(42, 1)).toEqual("by-index-1");
-    expect(uid(42, 2)).toEqual("by-index-2");
+    expect(uid(42, 1)).toEqual("idx-1");
+    expect(uid(42, 2)).toEqual("idx-2");
   });
 
   it('generate', () => {
@@ -25,7 +25,7 @@ describe('uid', () => {
     const uid2 = generateUID();
 
     const a = {};
-    const b = {}
+    const b = {};
     expect(uid1(a)).toEqual('uid1');
     expect(uid2(b)).toEqual('uid1');
     expect(uid1(b)).toEqual('uid2');
