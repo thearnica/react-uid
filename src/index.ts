@@ -1,5 +1,7 @@
 import {generateUID} from "./uid";
-import {UID, UIDReset, UIDConsumer, UIDFork} from "./Component";
+import {UIDReset, UIDConsumer, UIDFork} from "./Control";
+import {useUID, useUIDSeed} from "./hooks";
+import {UID} from "./UIDComponent";
 
 const uid = generateUID();
 
@@ -10,5 +12,8 @@ export {
   UID,
   UIDConsumer,
   UIDReset,
-  UIDFork
+  UIDFork,
+
+  useUID,
+  useUIDSeed
 }

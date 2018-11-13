@@ -11,6 +11,11 @@ Generate UID for an item, Renderless UID containers, SSR-friendly UID generation
 Example - https://codesandbox.io/s/kkmwr6vv47
 
 ## API
+React UID provides 3 different APIs
+- vanilla js API
+- React Component, renderProp based API
+- React Hooks
+#### Javascript
 - `uid(item, [index])` - generates UID for an object(function and so on). Quite usable for React `key` property.
 `item` should be an object, but could be anything. In case it is not an "object", and might have non-unique value - you have to specify second argument - `index`
 ```js
@@ -28,7 +33,7 @@ Example - https://codesandbox.io/s/kkmwr6vv47
  const data = ["a", "a"];
   data.map( (item, index) => <li key={uid(item, index)}>{item}</li>)
 ``` 
-
+#### React Components
 - `UID` - renderless container for generation Ids
 ```js
  import {UID} from 'react-uid';
@@ -66,6 +71,32 @@ Example - https://codesandbox.io/s/kkmwr6vv47
        )}
   </UID>
 ```
+#### Hooks (16.7+)
+- `useUID` will generate just a UID
+- `useUIDSeed` will generate a seed generator, you can use for multiple fields
+```js
+const Form = () => {
+  const uid = useUID();  
+  return (
+    <>
+     <label for={uid}>Email: </label>
+     <input id={uid} name="email" />
+    </>
+  )
+}
+
+const Form = () => {
+  const seed = useUIDSeed();  
+  return (
+    <>
+     <label for={seed('email')}>Email: </label>
+     <input id={seed('email')} name="email" />
+     {data.map(item => <div key={seed(item)}>...</div>
+    </>
+  )
+}
+```
+Hooks API __is SSR friendly__.
 
 ### Server-side friendly UID
 
