@@ -8,7 +8,7 @@ export const generateUID = () => {
       typeof item === 'number' ||
       typeof item === 'string'
     ) {
-      return index ? `by-index-${index}` : `not-unique-${item}`;
+      return index ? `idx-${index}` : `val-${item}`;
     }
 
     if (!map.has(item)) {

@@ -8,7 +8,7 @@ exports[`UID test UID 1`] = `
   <span>
     2
      
-    uid1
+    2-uid1
   </span>
 </div>
 `;
@@ -21,7 +21,7 @@ exports[`UID test UID 2`] = `
   <span>
     key-4
      
-    key-uid2
+    key-4-uid2
   </span>
 </div>
 `;
@@ -34,7 +34,7 @@ Array [
   <span>
     2
      
-    uid1
+    2-uid1
   </span>,
   <span>
     5
@@ -50,7 +50,7 @@ Array [
   <span>
     1
      
-    uid1
+    1-uid1
   </span>,
   <span>
     6
@@ -84,22 +84,22 @@ Array [
 exports[`UID test UIDFork uid 1`] = `
 Array [
   <span>
-    1-uid1
+    1-1-uid1
   </span>,
   <span>
-    1-uid2
+    1-2-uid2
   </span>,
   <span>
-    1-uid1
+    1-3-uid1
   </span>,
   <span>
-    2-uid1
+    2-1-uid1
   </span>,
   <span>
-    2-uid2
+    2-2-uid2
   </span>,
   <span>
-    2-uid1
+    2-3-uid1
   </span>,
 ]
 `;
