@@ -152,7 +152,6 @@ import {UIDReset, UIDFork, UIDConsumer} from 'react-uid';
       </UIDFork>    
  </UIDReset>
 ```
-```
 
 # Types
 Written in TypeScript
