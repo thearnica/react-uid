@@ -153,6 +153,8 @@ import {UIDReset, UIDFork, UIDConsumer} from 'react-uid';
  </UIDReset>
 ```
 
+The hooks API only needs the `<UIDFork>` wrapper.
+
 # Types
 Written in TypeScript
 
