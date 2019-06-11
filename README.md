@@ -4,6 +4,8 @@ UID
 [![coverage-badge](https://img.shields.io/codecov/c/github/thearnica/react-uid.svg?style=flat-square)](https://codecov.io/github/thearnica/react-uid)
 [![NPM version](https://img.shields.io/npm/v/react-uid.svg)](https://www.npmjs.com/package/react-uid)
 [![Greenkeeper badge](https://badges.greenkeeper.io/thearnica/react-uid.svg)](https://greenkeeper.io/)
+[![bundle size](https://badgen.net/bundlephobia/minzip/react-uid)](https://bundlephobia.com/result?p=react-uid)
+[![downloads](https://badgen.net/npm/dm/react-uid)](https://www.npmtrends.com/react-uid)
 
 
 Generate UID for an item, Renderless UID containers, SSR-friendly UID generation __in 900 bytes__.
