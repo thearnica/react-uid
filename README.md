@@ -7,18 +7,18 @@ UID
 [![bundle size](https://badgen.net/bundlephobia/minzip/react-uid)](https://bundlephobia.com/result?p=react-uid)
 [![downloads](https://badgen.net/npm/dm/react-uid)](https://www.npmtrends.com/react-uid)
 
-
-Generate UID for an item, Renderless UID containers, SSR-friendly UID generation __in 900 bytes__.
+To generate UID/Key for an `item`, consistently between client and server, __in 900 bytes__.
 
 Example - https://codesandbox.io/s/kkmwr6vv47
 
 ## API
 React UID provides 3 different APIs
-- vanilla js API
-- React Component, renderProp based API
-- React Hooks
+- vanilla js API - `uid(item) -> key` 
+- React Component, via renderProp based API - `<UID>{ id => <><label htmlFor={id}/><input id={id}/></>}</UID>
+- React Hooks - `useUID`
+
 #### Javascript
-- `uid(item, [index])` - generates UID for an object(function and so on). Quite usable for React `key` property.
+- `uid(item, [index])` - generates UID for an object(array, function and so on), result could be used as React `key`.
 `item` should be an object, but could be anything. In case it is not an "object", and might have non-unique value - you have to specify second argument - `index`
 ```js
  import {uid} from 'react-uid';
@@ -35,6 +35,9 @@ React UID provides 3 different APIs
  const data = ["a", "a"];
   data.map( (item, index) => <li key={uid(item, index)}>{item}</li>)
 ``` 
+
+JS API might be NOT __SSR friendly__,
+
 #### React Components
 - `UID` - renderless container for generation Ids
 ```js
@@ -61,21 +64,25 @@ React UID provides 3 different APIs
   
   // UID also provide `uid` as a second argument
   <UID>
-       {(id,uid) => (
+       {(_, uid) => (
          data.map( item => <li key={uid(item)}>{item}</li>) 
        )}
   </UID>
   
   // in the case `item` is not an object, but number or string - provide and index
   <UID>
-       {(id,uid) => (
+       {(_, uid) => (
          data.map( (item, index) => <li key={uid(item, index)}>{item}</li>) 
        )}
   </UID>
 ```
+The difference between `uid` and `UID` versions are in "nesting" - any `UID` used inside another `UID` would contain "parent prefix" in the result, scoping `uid` to the local tree branch.
+
+UID might be NOT __SSR friendly__,
+
 #### Hooks (16.7+)
-- `useUID` will generate just a UID
-- `useUIDSeed` will generate a seed generator, you can use for multiple fields
+- `useUID()` will generate just a UID
+- `useUIDSeed()` will generate a seed generator, you can use for multiple fields
 ```js
 const Form = () => {
   const uid = useUID();  
@@ -98,7 +105,7 @@ const Form = () => {
   )
 }
 ```
-Hooks API __is SSR friendly__.
+Hooks API __is SSR friendly__,
 
 ### Server-side friendly UID
 
@@ -125,7 +132,7 @@ Next example will generate the same code, regardless how many time you will rend
  </UIDReset>
 ```
 
-__UID__ is not SSR friendly - use __UIDConsumer__.
+__UID__ is not 100% SSR friendly - use __UIDConsumer__.
 
 ### Code splitting
 Codesplitting may affect the order or existence of the components, so alter
@@ -156,6 +163,9 @@ import {UIDReset, UIDFork, UIDConsumer} from 'react-uid';
 ```
 
 The hooks API only needs the `<UIDFork>` wrapper.
+
+### So hard?
+"Basic API" is not using Context API to keep realization simple, and React tree more flat.
 
 # Types
 Written in TypeScript
