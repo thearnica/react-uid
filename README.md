@@ -128,7 +128,7 @@ Next example will generate the same code, regardless how many time you will rend
              data.map( item => <li key={uid(item)}>{item}</li>)
            </Fragment> 
          )}
-     </SmartUID>
+     </UIDConsumer>
  </UIDReset>
 ```
 
