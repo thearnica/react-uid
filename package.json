@@ -42,7 +42,7 @@
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
     "react-test-renderer": "^16.4.0",
-    "size-limit": "^0.21.1",
+    "size-limit": "^4.4.4",
     "ts-react-toolbox": "^0.1.21"
   },
   "size-limit": [
