@@ -20,3 +20,5 @@ export const generateUID = () => {
 
   return uid;
 }
+
+export const generatedUID = generateUID();

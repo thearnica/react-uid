@@ -7,7 +7,7 @@ UID
 [![bundle size](https://badgen.net/bundlephobia/minzip/react-uid)](https://bundlephobia.com/result?p=react-uid)
 [![downloads](https://badgen.net/npm/dm/react-uid)](https://www.npmtrends.com/react-uid)
 
-To generate UID/Key for an `item`, consistently between client and server, __in 900 bytes__.
+To generate a _stable_ UID/Key for a given `item`, consistently between client and server, __in 900 bytes__.
 
 Example - https://codesandbox.io/s/kkmwr6vv47
 
@@ -36,10 +36,11 @@ React UID provides 3 different APIs
   data.map( (item, index) => <li key={uid(item, index)}>{item}</li>)
 ``` 
 
-JS API might be NOT __SSR friendly__,
+JS API might be NOT (multi-tenant)__SSR friendly__,
 
 #### React Components
-- `UID` - renderless container for generation Ids
+- (deprecated)`UID` - renderless container for generation Ids
+- `UIDConsumer` - renderless container for generation Ids
 ```js
  import {UID} from 'react-uid';
 
@@ -80,8 +81,8 @@ The difference between `uid` and `UID` versions are in "nesting" - any `UID` use
 
 UID might be NOT __SSR friendly__,
 
-#### Hooks (16.7+)
-- `useUID()` will generate just a UID
+#### Hooks (16.8+)
+- `useUID()` will generate a "stable" UID
 - `useUIDSeed()` will generate a seed generator, you can use for multiple fields
 ```js
 const Form = () => {
