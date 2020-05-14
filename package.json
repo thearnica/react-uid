@@ -1,7 +1,7 @@
 {
   "name": "react-uid",
   "version": "2.2.0",
-  "description": "Render less container for ID generation",
+  "description": "Render-less container for ID generation",
   "sideEffects": false,
   "main": "dist/es5/index.js",
   "types": "dist/es5/index.d.ts",
@@ -39,11 +39,11 @@
     "@types/node": "10.5.2",
     "codecov": "^3.0.2",
     "flow-bin": "^0.76.0",
-    "react": "^16.7.0-alpha.2",
-    "react-dom": "^16.7.0-alpha.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "react-test-renderer": "^16.4.0",
     "size-limit": "^0.21.1",
-    "ts-react-toolbox": "^0.1.21"
+    "ts-react-toolbox": "^0.2.20"
   },
   "size-limit": [
     {
@@ -55,7 +55,16 @@
     "node": ">=8.5.0"
   },
   "peerDependencies": {
-    "react": "^16.3.0"
+    "@types/react": "^16.8.0",
+    "react": "^16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
   },
   "keywords": [
     "react",
