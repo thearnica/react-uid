@@ -10,7 +10,6 @@ export class UID extends React.Component<UIDProps> {
     id: getId(this.props.idSource || counter)
   };
 
-
   prefixId(id: number | string) {
     const uid = (this.state.prefix + id);
     return String(this.props.name ? this.props.name(uid) : uid);

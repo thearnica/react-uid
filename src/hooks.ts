@@ -1,4 +1,3 @@
-// @ts-ignore
 import * as React from "react";
 import {counter, getId, getPrefix, IdSourceType, source} from "./context";
 
@@ -16,10 +15,10 @@ const generateUID = (context: IdSourceType) => {
 const useUIDState = () => {
   if (process.env.NODE_ENV !== "production") {
     if (!('useContext' in React)) {
-      throw new Error('Hooks API requires React 16.7+');
+      throw new Error('Hooks API requires React 16.8+');
     }
   }
-  // @ts-ignore
+
   return React.useState(generateUID(React.useContext(source)))
 };
 
