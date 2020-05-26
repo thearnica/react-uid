@@ -7,7 +7,7 @@ export type IdSourceType = {
   uid: (item: any, index?: number) => string,
 }
 
-export const createSource = (prefix = 'ruid-'): IdSourceType => ({
+export const createSource = (prefix = ''): IdSourceType => ({
   value: 1,
   prefix: prefix,
   uid: generateUID()
@@ -24,4 +24,4 @@ export const counter = createSource();
 export const source = React.createContext(createSource());
 
 export const getId = (source: IdSourceType) => source.value++;
-export const getPrefix = (source?: IdSourceType) => source ? source.prefix : 'ruid-';
+export const getPrefix = (source?: IdSourceType) => source ? source.prefix : '';

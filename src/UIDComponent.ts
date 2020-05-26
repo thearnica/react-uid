@@ -3,6 +3,11 @@ import {counter, getId, getPrefix, UIDProps} from "./context";
 
 // --------------------------------------------
 
+const prefixId = (id: number | string, prefix: string, name: UIDProps['name']) => {
+  const uid = (prefix + id);
+  return String(name ? name(uid) : uid);
+}
+
 export class UID extends React.Component<UIDProps> {
   state = {
     quartz: this.props.idSource || counter,
@@ -10,16 +15,15 @@ export class UID extends React.Component<UIDProps> {
     id: getId(this.props.idSource || counter)
   };
 
-  prefixId(id: number | string) {
-    const uid = (this.state.prefix + id);
-    return String(this.props.name ? this.props.name(uid) : uid);
-  }
-
-  uid = (item: any) => this.prefixId(this.state.id + '-' + this.state.quartz.uid(item));
+  uid = (item: any) => prefixId(
+    this.state.id + '-' + this.state.quartz.uid(item),
+    this.state.prefix,
+    this.props.name
+  );
 
   render() {
-    const {children} = this.props;
-    const {id} = this.state;
-    return children(this.prefixId(id), this.uid)
+    const {children, name} = this.props;
+    const {id, prefix} = this.state;
+    return children(prefixId(id, prefix, name), this.uid)
   }
 }

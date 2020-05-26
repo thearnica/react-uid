@@ -2,14 +2,18 @@ import * as React from 'react';
 import {createSource, UIDProps, source} from "./context";
 import {UID} from "./UIDComponent";
 
-export const UIDReset: React.SFC = ({children}) => (
-  <source.Provider value={createSource()}>{children}</source.Provider>
+interface WithPrefix {
+  prefix?: string;
+}
+
+export const UIDReset: React.SFC<WithPrefix> = ({children, prefix = ''}) => (
+  <source.Provider value={createSource(prefix)}>{children}</source.Provider>
 );
 
-export const UIDFork: React.SFC = ({children}) => (
+export const UIDFork: React.SFC<WithPrefix> = ({children, prefix = ''}) => (
   <UIDConsumer>
     {(id) => (
-      <source.Provider value={createSource(id + '-')}>
+      <source.Provider value={createSource(id + '-' + prefix)}>
         {children}
       </source.Provider>
     )}

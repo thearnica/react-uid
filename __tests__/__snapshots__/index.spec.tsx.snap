@@ -3,12 +3,12 @@
 exports[`UID test UID 1`] = `
 <div>
   <span>
-    ruid-1
+    1
   </span>
   <span>
-    ruid-2
+    2
      
-    ruid-2-uid1
+    2-uid1
   </span>
 </div>
 `;
@@ -16,12 +16,12 @@ exports[`UID test UID 1`] = `
 exports[`UID test UID 2`] = `
 <div>
   <span>
-    key-ruid-3
+    key-3
   </span>
   <span>
-    key-ruid-4
+    key-4
      
-    key-ruid-4-uid2
+    key-4-uid2
   </span>
 </div>
 `;
@@ -29,15 +29,15 @@ exports[`UID test UID 2`] = `
 exports[`UID test UIDConsumer 1`] = `
 Array [
   <span>
-    ruid-1
+    1
   </span>,
   <span>
-    ruid-2
+    2
      
-    ruid-2-uid1
+    2-uid1
   </span>,
   <span>
-    ruid-5
+    5
   </span>,
 ]
 `;
@@ -45,15 +45,15 @@ Array [
 exports[`UID test UIDConsumer 2`] = `
 Array [
   <span>
-    ruid-1
+    1
   </span>,
   <span>
-    ruid-1
+    1
      
-    ruid-1-uid1
+    1-uid1
   </span>,
   <span>
-    ruid-6
+    6
   </span>,
 ]
 `;
@@ -61,22 +61,22 @@ Array [
 exports[`UID test UIDFork 1`] = `
 Array [
   <span>
-    ruid-1-1
+    1-1
   </span>,
   <span>
-    ruid-1-2
+    1-2
   </span>,
   <span>
-    ruid-2-1
+    2-1
   </span>,
   <span>
-    ruid-2-2
+    2-2
   </span>,
   <span>
-    ruid-3-1
+    3-1
   </span>,
   <span>
-    ruid-4-1
+    4-1
   </span>,
 ]
 `;
@@ -84,22 +84,22 @@ Array [
 exports[`UID test UIDFork uid 1`] = `
 Array [
   <span>
-    ruid-1-1-uid1
+    1-1-uid1
   </span>,
   <span>
-    ruid-1-2-uid2
+    1-2-uid2
   </span>,
   <span>
-    ruid-1-3-uid1
+    1-3-uid1
   </span>,
   <span>
-    ruid-2-1-uid1
+    2-1-uid1
   </span>,
   <span>
-    ruid-2-2-uid2
+    2-2-uid2
   </span>,
   <span>
-    ruid-2-3-uid1
+    2-3-uid1
   </span>,
 ]
 `;

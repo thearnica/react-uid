@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`uid hooks test uid 1`] = `
+Array [
+  <i>
+    id1: 
+    (test-uid)1
+     id2:
+    (test-uid)2val-second-
+  </i>,
+  <i>
+    id1: 
+    (test-uid)3
+     id2:
+    (test-uid)4val-second-
+  </i>,
+  "---fork1:",
+  <i>
+    id1: 
+    (test-uid)5-fork1:1
+     id2:
+    (test-uid)5-fork1:2val-second-
+  </i>,
+  "---",
+  <i>
+    id1: 
+    (test-uid)6
+     id2:
+    (test-uid)7val-second-
+  </i>,
+  "---fork2:",
+  <i>
+    id1: 
+    (test-uid)8-1
+     id2:
+    (test-uid)8-2val-second-
+  </i>,
+  "---",
+  <i>
+    (test-uid)9
+  </i>,
+]
+`;

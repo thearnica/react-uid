@@ -19,6 +19,7 @@ const useUIDState = () => {
     }
   }
 
+  // @ts-ignore
   return React.useState(generateUID(React.useContext(source)))
 };
 
