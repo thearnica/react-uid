@@ -37,7 +37,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "10.5.2",
-    "codecov": "^3.0.2",
+    "codecov": "^3.6.5",
     "flow-bin": "^0.76.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
