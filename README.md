@@ -85,11 +85,13 @@ UID might be NOT __SSR friendly__,
 - `useUID()` will generate a "stable" UID
 - `useUIDSeed()` will generate a seed generator, you can use for multiple fields
 ```js
+import { useUID, useUIDSeed } from 'react-uid';
+
 const Form = () => {
   const uid = useUID();  
   return (
     <>
-     <label for={uid}>Email: </label>
+     <label htmlFor={uid}>Email: </label>
      <input id={uid} name="email" />
     </>
   )
@@ -99,7 +101,7 @@ const Form = () => {
   const seed = useUIDSeed();  
   return (
     <>
-     <label for={seed('email')}>Email: </label>
+     <label htmlFor={seed('email')}>Email: </label>
      <input id={seed('email')} name="email" />
      {data.map(item => <div key={seed(item)}>...</div>
     </>
