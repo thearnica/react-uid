@@ -14,7 +14,7 @@ Example - https://codesandbox.io/s/kkmwr6vv47
 ## API
 React UID provides 3 different APIs
 - vanilla js API - `uid(item) -> key` 
-- React Component, via renderProp based API - `<UID>{ id => <><label htmlFor={id}/><input id={id}/></>}</UID>
+- React Component, via renderProp based API - `<UID>{ id => <><label htmlFor={id}/><input id={id}/></>}</UID>`
 - React Hooks - `useUID`
 
 #### Javascript
