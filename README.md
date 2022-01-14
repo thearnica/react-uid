@@ -9,6 +9,8 @@ UID
 
 To generate a _stable_ UID/Key for a given `item`, consistently between client and server, __in 900 bytes__.
 
+⚠️ __Not compatible with Strict or Concurent mode__. Consider using _native_ `useId`(React 18) hook instead.
+
 Example - https://codesandbox.io/s/kkmwr6vv47
 
 ## API
