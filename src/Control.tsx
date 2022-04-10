@@ -16,7 +16,7 @@ interface WithPrefix {
  * </UIDReset/>
  * @see https://github.com/thearnica/react-uid#server-side-friendly-uid
  */
-export const UIDReset: React.SFC<WithPrefix> = ({children, prefix = ''}) => (
+export const UIDReset: React.FC<React.PropsWithChildren<WithPrefix>> = ({children, prefix = ''}) => (
   <source.Provider value={createSource(prefix)}>{children}</source.Provider>
 );
 
@@ -25,7 +25,7 @@ export const UIDReset: React.SFC<WithPrefix> = ({children, prefix = ''}) => (
  * Useful for self-contained elements or code splitting
  * @see https://github.com/thearnica/react-uid#code-splitting
  */
-export const UIDFork: React.SFC<WithPrefix> = ({children, prefix = ''}) => (
+export const UIDFork: React.FC<React.PropsWithChildren<WithPrefix>> = ({children, prefix = ''}) => (
   <UIDConsumer>
     {(id) => (
       <source.Provider value={createSource(id + '-' + prefix)}>
@@ -53,7 +53,7 @@ export const UIDFork: React.SFC<WithPrefix> = ({children, prefix = ''}) => (
  * @see {@link useUID} - a hook version of this component
  * @see {@link UID} - not SSR compatible version
  */
-export const UIDConsumer: React.SFC<UIDProps> = ({name, children}) => (
+export const UIDConsumer: React.FC<UIDProps> = ({name, children}) => (
   <source.Consumer>
     {(value) => (
       <UID name={name} idSource={value} children={children}/>
