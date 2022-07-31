@@ -16,22 +16,21 @@ export const generateUID = () => {
    * @borrows {uid}
    */
   const uid = (item: any, index?: number): string => {
-    if (
-      typeof item === 'number' ||
-      typeof item === 'string'
-    ) {
+    if (typeof item === 'number' || typeof item === 'string') {
       return index ? `idx-${index}` : `val-${item}`;
     }
 
     if (!map.has(item)) {
       map.set(item, counter++);
-      return uid(item)
+
+      return uid(item);
     }
+
     return 'uid' + map.get(item);
   };
 
   return uid;
-}
+};
 
 /**
  * @name uid

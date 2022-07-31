@@ -1,6 +1,9 @@
 import * as React from 'react';
-import {createSource, UIDProps, source} from "./context";
-import {UID} from "./UIDComponent";
+
+import { useState } from 'react';
+
+import { UID } from './UIDComponent';
+import { createSource, UIDProps, source } from './context';
 
 interface WithPrefix {
   prefix?: string;
@@ -16,22 +19,20 @@ interface WithPrefix {
  * </UIDReset/>
  * @see https://github.com/thearnica/react-uid#server-side-friendly-uid
  */
-export const UIDReset: React.FC<React.PropsWithChildren<WithPrefix>> = ({children, prefix = ''}) => (
-  <source.Provider value={createSource(prefix)}>{children}</source.Provider>
-);
+export const UIDReset: React.FC<React.PropsWithChildren<WithPrefix>> = ({ children, prefix = '' }) => {
+  const [valueSource] = useState(() => createSource(prefix));
+
+  return <source.Provider value={valueSource}>{children}</source.Provider>;
+};
 
 /**
  * Creates a sub-ids for nested components, isolating from inside a branch.
  * Useful for self-contained elements or code splitting
  * @see https://github.com/thearnica/react-uid#code-splitting
  */
-export const UIDFork: React.FC<React.PropsWithChildren<WithPrefix>> = ({children, prefix = ''}) => (
+export const UIDFork: React.FC<React.PropsWithChildren<WithPrefix>> = ({ children, prefix = '' }) => (
   <UIDConsumer>
-    {(id) => (
-      <source.Provider value={createSource(id + '-' + prefix)}>
-        {children}
-      </source.Provider>
-    )}
+    {(id) => <source.Provider value={createSource(id + '-' + prefix)}>{children}</source.Provider>}
   </UIDConsumer>
 );
 
@@ -53,10 +54,6 @@ export const UIDFork: React.FC<React.PropsWithChildren<WithPrefix>> = ({children
  * @see {@link useUID} - a hook version of this component
  * @see {@link UID} - not SSR compatible version
  */
-export const UIDConsumer: React.FC<UIDProps> = ({name, children}) => (
-  <source.Consumer>
-    {(value) => (
-      <UID name={name} idSource={value} children={children}/>
-    )}
-  </source.Consumer>
+export const UIDConsumer: React.FC<UIDProps> = ({ name, children }) => (
+  <source.Consumer>{(value) => <UID name={name} idSource={value} children={children} />}</source.Consumer>
 );

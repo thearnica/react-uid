@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`uid hooks in strict mode test uid 1`] = `"<div><i>1 == 2 ?</i></div>"`;

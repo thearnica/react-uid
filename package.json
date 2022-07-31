@@ -7,23 +7,31 @@
   "types": "dist/es5/index.d.ts",
   "jsnext:main": "dist/es2015/index.js",
   "module": "dist/es2015/index.js",
+  "module:es2019": "dist/es2019/index.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "dev": "ts-react-toolbox dev",
+    "dev": "lib-builder dev",
     "bootstrap": "ts-react-toolbox init",
-    "test": "ts-react-toolbox test",
-    "test:ci": "ts-react-toolbox test --runInBand --coverage",
+    "test": "jest",
+    "test:ci": "jest --runInBand --coverage",
     "test:size": "size-limit",
-    "build": "ts-react-toolbox build",
-    "release": "ts-react-toolbox release",
+    "build": "lib-builder build && yarn size:report",
+    "release": "yarn build && yarn test",
     "prepublishOnly": "yarn build",
-    "lint": "ts-react-toolbox lint",
+    "lint": "lib-builder lint",
     "static": "ts-react-toolbox publish",
     "typecheck:flow": "flow check",
-    "format": "ts-react-toolbox format",
-    "analyze": "ts-react-toolbox analyze"
+    "format": "lib-builder format",
+    "analyze": "ts-react-toolbox analyze",
+    "size": "npx size-limit",
+    "size:report": "npx size-limit --json > .size.json",
+    "update": "lib-builder update",
+    "prepublish-only": "yarn build && yarn changelog",
+    "prepare": "husky install",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "changelog:rewrite": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "repository": {
     "type": "git",
@@ -36,15 +44,10 @@
   "author": "Marina Korzunova (thearnica@gmail.com)",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "10.5.2",
-    "@types/react": "^18.0.1",
-    "codecov": "^3.0.2",
-    "flow-bin": "^0.76.0",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "react-test-renderer": "^16.4.0",
-    "size-limit": "^0.21.1",
-    "ts-react-toolbox": "^0.2.20"
+    "@size-limit/preset-small-lib": "^2.1.6",
+    "@theuiteam/lib-builder": "^0.2.1",
+    "@types/react-test-renderer": "^18.0.0",
+    "react-test-renderer": "^18.2.0"
   },
   "size-limit": [
     {
@@ -53,7 +56,7 @@
     }
   ],
   "engines": {
-    "node": ">=12"
+    "node": ">=10"
   },
   "peerDependencies": {
     "@types/react": "^16.8.0 || ^17.0.0 || ^18.0.0",
@@ -72,5 +75,21 @@
     "uid",
     "counter",
     "context"
-  ]
+  ],
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{js,css,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
+  }
 }

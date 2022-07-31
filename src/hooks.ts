@@ -1,5 +1,8 @@
-import * as React from "react";
-import {counter, getId, getPrefix, IdSourceType, source} from "./context";
+import * as React from 'react';
+
+import { useContext, useState } from 'react';
+
+import { counter, getId, getPrefix, IdSourceType, source } from './context';
 
 /**
  * Actually a uid function - call with any argument
@@ -7,25 +10,32 @@ import {counter, getId, getPrefix, IdSourceType, source} from "./context";
  * @see {@link uid}
  */
 type SeedGenerator = (id: any) => string;
+type GeneratedUID = {
+  uid: string;
+  gen(item: any): string;
+};
 
-const generateUID = (context: IdSourceType) => {
+const generateUID = (context: IdSourceType): GeneratedUID => {
   const quartz = context || counter;
   const prefix = getPrefix(quartz);
   const id = getId(quartz);
   const uid = prefix + id;
   const gen = (item: any) => uid + quartz.uid(item);
-  return {uid, gen};
+
+  return { uid, gen };
 };
 
-const useUIDState = () => {
-  if (process.env.NODE_ENV !== "production") {
+const useUIDState = (): GeneratedUID => {
+  if (process.env.NODE_ENV !== 'production') {
     if (!('useContext' in React)) {
       throw new Error('Hooks API requires React 16.8+');
     }
   }
 
-  // @ts-ignore
-  return React.useState(generateUID(React.useContext(source)))
+  const context = useContext(source);
+  const [uid] = useState<GeneratedUID>(() => generateUID(context));
+
+  return uid;
 };
 
 /**
@@ -38,7 +48,8 @@ const useUIDState = () => {
  * id == 1; // for example
  */
 export const useUID = (): string => {
-  const [{uid}] = useUIDState();
+  const { uid } = useUIDState();
+
   return uid;
 };
 
@@ -57,6 +68,7 @@ export const useUID = (): string => {
  * )
  */
 export const useUIDSeed = (): SeedGenerator => {
-  const [{gen}] = useUIDState();
+  const { gen } = useUIDState();
+
   return gen;
 };
