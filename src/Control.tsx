@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { UID } from './UIDComponent';
 import { createSource, UIDProps, source } from './context';
+import { useUID } from './hooks';
 
 interface WithPrefix {
   prefix?: string;
@@ -30,11 +31,12 @@ export const UIDReset: React.FC<React.PropsWithChildren<WithPrefix>> = ({ childr
  * Useful for self-contained elements or code splitting
  * @see https://github.com/thearnica/react-uid#code-splitting
  */
-export const UIDFork: React.FC<React.PropsWithChildren<WithPrefix>> = ({ children, prefix = '' }) => (
-  <UIDConsumer>
-    {(id) => <source.Provider value={createSource(id + '-' + prefix)}>{children}</source.Provider>}
-  </UIDConsumer>
-);
+export const UIDFork: React.FC<React.PropsWithChildren<WithPrefix>> = ({ children, prefix = '' }) => {
+  const id = useUID();
+  const [valueSource] = useState(() => createSource(id + '-' + prefix));
+
+  return <source.Provider value={valueSource}>{children}</source.Provider>;
+};
 
 /**
  * UID in form of renderProps. Supports nesting and SSR. Prefer {@link useUID} hook version if possible.

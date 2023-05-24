@@ -44,8 +44,8 @@
   "author": "Marina Korzunova (thearnica@gmail.com)",
   "license": "MIT",
   "devDependencies": {
+    "@theuiteam/lib-builder": "^0.3.0",
     "@size-limit/preset-small-lib": "^2.1.6",
-    "@theuiteam/lib-builder": "^0.2.1",
     "@types/react-test-renderer": "^18.0.0",
     "react-test-renderer": "^18.2.0"
   },
@@ -59,8 +59,8 @@
     "node": ">=10"
   },
   "peerDependencies": {
-    "@types/react": "^16.8.0 || ^17.0.0 || ^18.0.0",
-    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "@types/react": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -91,5 +91,10 @@
     "tabWidth": 2,
     "semi": true,
     "singleQuote": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
