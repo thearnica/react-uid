@@ -25,8 +25,8 @@
     "typecheck:flow": "flow check",
     "format": "lib-builder format",
     "analyze": "ts-react-toolbox analyze",
-    "size": "npx size-limit",
-    "size:report": "npx size-limit --json > .size.json",
+    "size": "size-limit",
+    "size:report": "size-limit --json > .size.json",
     "update": "lib-builder update",
     "prepublish-only": "yarn build && yarn changelog",
     "prepare": "husky install",
@@ -45,14 +45,15 @@
   "license": "MIT",
   "devDependencies": {
     "@theuiteam/lib-builder": "^0.3.0",
-    "@size-limit/preset-small-lib": "^2.1.6",
+    "@size-limit/preset-small-lib": "^11.1.6",
+    "size-limit": "^11.0.2",
     "@types/react-test-renderer": "^18.0.0",
     "react-test-renderer": "^18.2.0"
   },
   "size-limit": [
     {
       "path": "dist/es2015/index.js",
-      "limit": "1 KB"
+      "limit": "1.1 KB"
     }
   ],
   "engines": {
